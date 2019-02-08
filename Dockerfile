@@ -1,6 +1,7 @@
 FROM golang:latest
-RUN mkdir /app
-ADD . /app/
-WORKDIR /app
-RUN go build -o main .
-CMD ["/app/main"]
+ADD . /go/src/app
+RUN go install app
+FROM alpine:latest
+COPY --from=0 /go/bin/app .
+ENV PORT 8080
+CMD ["./app"]
