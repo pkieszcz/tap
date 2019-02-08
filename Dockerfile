@@ -1,4 +1,4 @@
-FROM golang:latest
+FROM golang:1.8-alpine
 ADD . /go/src/app
 RUN go install app
 FROM alpine:latest
